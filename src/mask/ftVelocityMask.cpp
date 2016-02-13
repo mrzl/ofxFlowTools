@@ -39,16 +39,16 @@ namespace flowTools {
 		height = _height;
 		
 		colorMaskSwapBuffer.allocate(width, height, GL_RGBA);
-		colorMaskSwapBuffer.clear();
+		colorMaskSwapBuffer.black();
 		
 		luminanceMaskFbo.allocate(width, height, GL_RGB);
-		luminanceMaskFbo.clear();
+		luminanceMaskFbo.black();
 		
 		bVelocityTextureSet = false;
 		bDensityTextureSet = false;
 		
 		parameters.setName("velocity mask");
-		parameters.add(strength.set("strength", 5.5, 0, 10));
+		parameters.add(strength.set("strength", 2.5, 0, 10));
 		parameters.add(saturation.set("saturation", 3, 1, 5));
 		parameters.add(blurPasses.set("blur passes", 3, 0, 10));
 		parameters.add(blurRadius.set("blur radius", 5, 0, 10));
@@ -58,7 +58,7 @@ namespace flowTools {
 	void ftVelocityMask::update() {
 		ofPushStyle();
 		ofEnableBlendMode(OF_BLENDMODE_ALPHA);
-		colorMaskSwapBuffer.clear();
+		colorMaskSwapBuffer.black();
 		
 		if (!bVelocityTextureSet || !bDensityTextureSet) {
 			ofLogVerbose("ftVelocityMask: velocity or density texture not set, can't update");

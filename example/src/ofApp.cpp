@@ -40,7 +40,7 @@ void ofApp::setup(){
 	simpleCam.setup(640, 480, true);
 	didCamUpdate = false;
 	cameraFbo.allocate(640, 480);
-	cameraFbo.clear();
+	cameraFbo.black();
 	
 	// GUI
 	setupGui();
@@ -161,7 +161,10 @@ void ofApp::update(){
 		ofPopStyle();
 		
 		opticalFlow.setSource(cameraFbo.getTexture());
-		opticalFlow.update(deltaTime);
+		
+		// opticalFlow.update(deltaTime);
+		// use internal deltatime instead
+		opticalFlow.update();
 		
 		velocityMask.setDensity(cameraFbo.getTexture());
 		velocityMask.setVelocity(opticalFlow.getOpticalFlow());
