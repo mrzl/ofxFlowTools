@@ -379,7 +379,7 @@ namespace flowTools {
 		
 		densitySwapBuffer.getBackTexture().draw(x,y,_width,_height);
 	}
-	
+
 	//--------------------------------------------------------------
 	void ftFluidSimulation::reset() {
 		
