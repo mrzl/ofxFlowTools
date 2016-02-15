@@ -123,80 +123,29 @@ namespace flowTools {
 
 	//--------------------------------------------------------------
 	void ftDrawMouseForces::mouseDragged( ofMouseEventArgs& mouse ) {
-		if( mouse.button == 0 ) {
-			fluidTemporaryImpulse( mouse.x, mouse.y );
-		}
-		else {
-			fluidPermanentImpulse( mouse.x, mouse.y );
-		}
-	}
-
-	void ftDrawMouseForces::permanentImpulse( int x, int y, float direction, bool isObstacle )
-	{
 		ofVec2f normalizedMouse;
 
-		normalizedMouse.set( x / ( float ) ofGetWindowWidth(), y / ( float ) ofGetWindowHeight() );
+		normalizedMouse.set( mouse.x / ( float ) ofGetWindowWidth(), mouse.y / ( float ) ofGetWindowHeight() );
 
-		// fucking test this shit when you get back
-		ofVec2f last( normalizedMouse.x + 0.1f * cos( direction ), normalizedMouse.y + 0.1f * sin( direction ) );
-		ofVec2f velocity = normalizedMouse - last;
+		ofVec2f velocity = normalizedMouse - lastNormalizedMouse;
 
-		if( isObstacle ) {
-			drawForces[ 7 ].applyForce( normalizedMouse );
-		}
-		else {
-			for( int i = numDrawForces / 2; i < numDrawForces - 1; i++ ) {
-				if( drawForces[ i ].getType() == FT_VELOCITY ) {
+		if( mouse.button == 0 ) {
+
+			for( int i = 0; i < numDrawForces / 2 - 1; i++ ) {
+				if( drawForces[ i ].getType() == FT_VELOCITY )
 					drawForces[ i ].setForce( velocity );
-				}
-
 				drawForces[ i ].applyForce( normalizedMouse );
 			}
 		}
-	}
-
-	void ftDrawMouseForces::temporaryImpulse( int x, int y, float direction, bool isObstacle )
-	{
-		if( !isObstacle ) {
-			fluidTemporaryImpulse( x, y );
-		}
 		else {
 
-		}
-	}
-
-	void ftDrawMouseForces::fluidTemporaryImpulse( int x, int y )
-	{
-		ofVec2f normalizedMouse;
-
-		normalizedMouse.set( x / ( float ) ofGetWindowWidth(), y / ( float ) ofGetWindowHeight() );
-
-		ofVec2f velocity = normalizedMouse - lastNormalizedMouse;
-
-		// -1 in order to skip the automatic obstacle drawings
-		for( int i = 0; i < numDrawForces / 2 - 1; i++ ) {
-			if( drawForces[ i ].getType() == FT_VELOCITY )
-				drawForces[ i ].setForce( velocity );
-			drawForces[ i ].applyForce( normalizedMouse );
+			for( int i = numDrawForces / 2; i < numDrawForces - 1; i++ ) {
+				if( drawForces[ i ].getType() == FT_VELOCITY )
+					drawForces[ i ].setForce( velocity );
+				drawForces[ i ].applyForce( normalizedMouse );
+			}
 		}
 		lastNormalizedMouse.set( normalizedMouse );
-	}
-
-	void ftDrawMouseForces::fluidPermanentImpulse( int x, int y )
-	{
-		ofVec2f normalizedMouse;
-
-		normalizedMouse.set( x / ( float ) ofGetWindowWidth(), y / ( float ) ofGetWindowHeight() );
-
-		ofVec2f velocity = normalizedMouse - lastNormalizedMouse;
-		// -1 in order to skip the automatic obstacle drawings
-		for( int i = numDrawForces / 2; i < numDrawForces - 1; i++ ) {
-			if( drawForces[ i ].getType() == FT_VELOCITY )
-				drawForces[ i ].setForce( velocity );
-			drawForces[ i ].applyForce( normalizedMouse );
-		}
-		lastNormalizedMouse.set( normalizedMouse );
-
 	}
 
 	//--------------------------------------------------------------

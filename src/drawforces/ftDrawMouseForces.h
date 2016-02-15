@@ -31,12 +31,7 @@ namespace flowTools {
 		void				mouseMoved( ofMouseEventArgs & mouse );
 		void				mouseDragged( ofMouseEventArgs & mouse );
 
-		void				permanentImpulse( int x, int y, float direction, bool isObstacle );
-		void				temporaryImpulse( int x, int y, float direction, bool isObstacle );
 	private:
-		void				fluidTemporaryImpulse( int x, int y );
-		void				fluidPermanentImpulse( int x, int y );
-
 		ofParameter<bool>	doResetDrawForces;
 		void				resetDrawForcesListner( bool& _value ) { if( _value ) { reset(); }; doResetDrawForces.set( false ); }
 
