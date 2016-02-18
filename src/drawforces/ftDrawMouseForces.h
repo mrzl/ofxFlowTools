@@ -23,6 +23,8 @@ namespace flowTools {
 		void				setType( int _index, ftDrawForceType _type );
 		ofTexture&			getTextureReference( int _index );
 		float				getStrength( int _index );
+		void				setStrength( int _index, float _strength );
+		void				setStrength( float _strength );
 
 		//		ofParameterGroup	parameters;
 		ofParameterGroup	leftButtonParameters;
@@ -31,7 +33,6 @@ namespace flowTools {
 		void				mouseMoved( ofMouseEventArgs & mouse );
 		void				mouseDragged( ofMouseEventArgs & mouse );
 
-	private:
 		ofParameter<bool>	doResetDrawForces;
 		void				resetDrawForcesListner( bool& _value ) { if( _value ) { reset(); }; doResetDrawForces.set( false ); }
 

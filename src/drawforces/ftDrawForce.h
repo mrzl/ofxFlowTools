@@ -54,12 +54,12 @@ namespace flowTools {
 		bool	didChange() {return forceChanged;}
 		
 		ofParameterGroup	parameters;
-		
+		ofParameter<ofVec4f> force;
 	protected:
 		ftDrawForceType  type;
 		ofParameter<int>	drawType;
 		ofParameter<bool>	isTemporary;
-		ofParameter<ofVec4f> force;
+		
 		ofParameter<float>	strength;
 		ofParameter<float>	radius;
 		ofParameter<float>	edge;

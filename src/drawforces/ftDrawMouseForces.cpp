@@ -26,7 +26,7 @@ namespace flowTools {
 		simulationHeight = _simulationHeight;
 		densityWidth = ( !_densityWidth ) ? simulationWidth : _densityWidth;
 		densityHeight = ( !_densityHeight ) ? simulationHeight : _densityHeight;
-
+			
 		numDrawForces = 8;
 		drawForces = new ftDrawForce[ numDrawForces ];
 		drawForces[ 0 ].setup( densityWidth, densityHeight, FT_DENSITY, true );
@@ -118,6 +118,18 @@ namespace flowTools {
 			else {
 				return drawForces[ _index ].getStrength() * deltaTime;;
 			}
+		}
+	}
+
+	void ftDrawMouseForces::setStrength( int _index, float _strength )
+	{
+		drawForces[ _index ].setStrength( _strength );
+	}
+
+	void ftDrawMouseForces::setStrength( float _strength )
+	{
+		for( int i = 0; i < numDrawForces; i++ ) {
+			drawForces[ i ].setStrength( _strength );
 		}
 	}
 
