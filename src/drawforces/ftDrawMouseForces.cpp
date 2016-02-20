@@ -166,4 +166,14 @@ namespace flowTools {
 		normalizedMouse.set( mouse.x / ( float ) ofGetWindowWidth(), mouse.y / ( float ) ofGetWindowHeight() );
 		lastNormalizedMouse.set( normalizedMouse );
 	}
+
+	flowTools::ftDrawForce ftDrawMouseForces::getTemporaryDrawForce( int index )
+	{
+		return drawForces[ index ];
+	}
+
+	flowTools::ftDrawForce ftDrawMouseForces::getPermanentDrawForce( int index )
+	{
+		return drawForces[ numDrawForces / 2 + index ];
+	}
 }

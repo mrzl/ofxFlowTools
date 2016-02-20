@@ -26,6 +26,9 @@ namespace flowTools {
 		void				setStrength( int _index, float _strength );
 		void				setStrength( float _strength );
 
+		ftDrawForce getTemporaryDrawForce( int index );
+		ftDrawForce getPermanentDrawForce( int index );
+
 		//		ofParameterGroup	parameters;
 		ofParameterGroup	leftButtonParameters;
 		ofParameterGroup	rightButtonParameters;
